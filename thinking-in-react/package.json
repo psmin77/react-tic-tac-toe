@@ -9,9 +9,21 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "react": "19.0.0-rc-3edc000d-20240926",
-    "react-dom": "19.0.0-rc-3edc000d-20240926",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-scripts": "^5.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
