@@ -1,43 +1,32 @@
-const content = [
-  {
-    title: "Photo",
-    img: {
-      url: "https://i.imgur.com/OKS67lhm.jpg",
-      alt: "Aklilu Lemma",
-    },
-  },
-  {
-    title: "About",
-    desc: "Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.",
-  },
-];
+import { people } from "./data.js";
+import { getImageUrl } from "./utils.js";
 
-function Card({ title, img, desc }) {
+function Item({ person }) {
   return (
-    <div className="card">
-      <div className="card-content">
-        <h1>{title}</h1>
-        {img?.url ? (
-          <img
-            className="avatar"
-            src={img.url}
-            alt={img.alt}
-            width={70}
-            height={70}
-          />
-        ) : (
-          <p>{desc}</p>
-        )}
-      </div>
-    </div>
+    <li key={person.id}>
+      <img src={getImageUrl(person)} alt={person.name} />
+      <p>
+        <b>{person.name}:</b>
+        {" " + person.profession + " "}
+        known for {person.accomplishment}
+      </p>
+    </li>
   );
 }
 
-export default function Profile() {
+export default function List() {
+  const chemists = people
+    .filter((person) => person.profession === "chemist")
+    .map((person) => <Item key={person.id} person={person} />);
+  const others = people
+    .filter((person) => person.profession !== "chemist")
+    .map((person) => <Item key={person.id} person={person} />);
+
   return (
-    <div>
-      <Card {...content[0]} />
-      <Card {...content[1]} />
-    </div>
+    <article>
+      <h1>Scientists</h1>
+      <ul>{chemists}</ul>
+      <ul>{others}</ul>
+    </article>
   );
 }
