@@ -1,66 +1,43 @@
-import { getImageUrl } from "./utils.js";
-
-const person = [
+const content = [
   {
-    name: "Maria Skłodowska-Curie",
-    url: "szV5sdG",
-    alt: "Maria Skłodowska-Curie",
-    profession: "physicist and chemist",
-    awards: [
-      "Nobel Prize in Physics",
-      "Nobel Prize in Chemistry",
-      "Davy Medal",
-      "Matteucci Medal",
-    ],
-    discover: "polonium (chemical element)",
+    title: "Photo",
+    img: {
+      url: "https://i.imgur.com/OKS67lhm.jpg",
+      alt: "Aklilu Lemma",
+    },
   },
   {
-    name: "Katsuko Saruhashi",
-    url: "YfeOqp2",
-    alt: "Katsuko Saruhashi",
-    profession: "geochemist",
-    awards: ["Miyake Prize for geochemistry", "Tanaka Prize"],
-    discover: "a method for measuring carbon dioxide in seawater",
+    title: "About",
+    desc: "Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.",
   },
 ];
 
-function Card({ name, url, alt, profession, awards, discover }) {
-  const size = 70;
-
+function Card({ title, img, desc }) {
   return (
-    <section className="profile">
-      <h2>{name}</h2>
-      <img
-        className="avatar"
-        src={getImageUrl(url)}
-        alt={alt}
-        width={size}
-        height={size}
-      />
-      <ul>
-        <li>
-          <b>Profession: </b>
-          {profession}
-        </li>
-        <li>
-          <b>Awards: {awards?.length} </b>({awards?.join(", ")})
-        </li>
-        <li>
-          <b>Discovered: </b>
-          {discover}
-        </li>
-      </ul>
-    </section>
+    <div className="card">
+      <div className="card-content">
+        <h1>{title}</h1>
+        {img?.url ? (
+          <img
+            className="avatar"
+            src={img.url}
+            alt={img.alt}
+            width={70}
+            height={70}
+          />
+        ) : (
+          <p>{desc}</p>
+        )}
+      </div>
+    </div>
   );
 }
 
-export default function Gallery() {
+export default function Profile() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
-      {person.map((p) => (
-        <Card key={p.name} {...p} />
-      ))}
+      <Card {...content[0]} />
+      <Card {...content[1]} />
     </div>
   );
 }
