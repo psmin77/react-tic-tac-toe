@@ -1,25 +1,20 @@
-import { recipes } from "./data.js";
+import Profile from "./Profile.js";
 
-function Recipe({ id, name, ingredients }) {
+export default function App() {
   return (
-    <div key={id}>
-      <h2>{name}</h2>
-      <ul>
-        {ingredients.map((i) => (
-          <li key={i}>{i}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default function RecipeList() {
-  return (
-    <div>
-      <h1>Recipes</h1>
-      {recipes.map((recipe) => (
-        <Recipe key={recipe.id} {...recipe} />
-      ))}
-    </div>
+    <>
+      <Profile
+        person={{
+          imageId: "lrWQx8l",
+          name: "Subrahmanyan Chandrasekhar",
+        }}
+      />
+      <Profile
+        person={{
+          imageId: "MK3eW3A",
+          name: "Creola Katherine Johnson",
+        }}
+      />
+    </>
   );
 }
